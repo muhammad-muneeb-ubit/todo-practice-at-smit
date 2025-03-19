@@ -2,14 +2,15 @@ import express from "express";
 import todoModel from "./models/todoSchema.js";
 import mongoose from "mongoose";
 import cors from "cors"
+import dotenv from "dotenv";
 const app = express();
+dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
-const connectingString =
-  "mongodb+srv://admin:admin@todoapp.fb2fk.mongodb.net/?retryWrites=true&w=majority&appName=todoapp";
+const connectingString = process.env.connectingString
 mongoose
   .connect(connectingString)
   .then(() => console.log("Database connected successfully!"))
@@ -20,7 +21,6 @@ app.get("/", (req, res) => {
 });
 
 app.post("/createtodo", async (req, res) => {
-  // console.log(req.body);
 
   try {
     const data = await todoModel.create(req.body);
@@ -53,7 +53,6 @@ app.get("/alltodos", async (req, res) => {
 });
 
 app.patch("/update/:id", async (req, res) => {
-  // console.log(req.params.id);
   try {
     let id = req.params.id;
     let newBody = req.body;
@@ -86,7 +85,7 @@ app.delete("/delete/:id", async (req, res) => {
     }
 })
 
-const PORT = 3000;
+const PORT = process.env.port || 5000;
 app.listen(PORT, () => {
   console.log("server is listening on port " + PORT);
 });

@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Stack Todo App</title>
+    <title>Todo App</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>FullStack Todo App</h1>
-        <input id="input" type="text" placeholder="Enter title of todo . . . . ">
-        <input id="desc" type="text" placeholder="Enter description of todo . . . . ">
-        <button id="add" onclick="addTodo()">Add todo</button>
+        <h1>Todo App</h1>
+        <div class="todo-form">
+            <input type="text" id="title" placeholder="Enter Todo Title">
+            <input type="text" id="description" placeholder="Enter Description">
+            <button id="addTodo">Add Todo</button>
+        </div>
+        <ul id="todoList"></ul>
     </div>
-    <script type="module" src="app.js"></script>
+
+    <script src="app.js"></script>
 </body>
 </html>
